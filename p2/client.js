@@ -38,6 +38,7 @@ sinkyShip.on('guess', (payload) => {
 
     if (hitCounter === ship.length) {
       sinkyShip.emit('game-over', 'Sinky Shipped!!!');
+      return;
     }
 
     sinkyShip.emit('answer', 'HIT!!');
@@ -47,16 +48,18 @@ sinkyShip.on('guess', (payload) => {
   setTimeout(() => {
     const guess = guessMaker();
     sinkyShip.emit('guess', guess);
-  }, 2000);
+  }, 500);
 
   console.log(guessesMade);
   console.log(hitCounter);
 
   sinkyShip.on('game-over', (payload) => {
-    if(hitCounter === ship.length){
+    if (hitCounter === ship.length) {
       console.log('Loser');
     } else {
       console.log('WINNER!!');
     }
+    console.log('exit');
+    process.exit(1);
   });
 });

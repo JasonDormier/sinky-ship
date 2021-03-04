@@ -20,7 +20,9 @@ sinkyShip.on('connection', (socket) => {
 
   socket.on('game-over', (payload) => {
     console.log(payload);
-    socket.emit('game-over', payload);
+    sinkyShip.emit('game-over', payload);
+    console.log('exit');
+    process.exit(1);
   });
 
 });
