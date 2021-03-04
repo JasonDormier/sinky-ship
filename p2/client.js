@@ -10,7 +10,7 @@ const numbers = ['1', '2', '3', '4', '5', '6'];
 
 const guessesMade = []; //empty array to push player guesses into
 
-const ship = ['F1', 'F2', 'F3', 'F4'];
+const ship = ['A3', 'B3', 'C3', 'D3'];
 
 let hitCounter = 0;
 
