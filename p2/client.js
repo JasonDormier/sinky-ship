@@ -28,10 +28,11 @@ function guessMaker() {
     guess = generateGuess(letters, numbers);
   }
   guessesMade.push(guess);
+  return guess;
 }
 
 sinkyShip.on('guess', (payload) => {
-  console.log(payload);
+
   if (ship.includes(payload)) {
     hitCounter++;
 
@@ -39,9 +40,9 @@ sinkyShip.on('guess', (payload) => {
       sinkyShip.emit('game-over', 'Sinky Shipped!!!');
     }
 
-    sinkyShip.emit('answer', 'hit');
+    sinkyShip.emit('answer', 'HIT!!');
 
-  } else { sinkyShip.emit('answer', 'miss'); }
+  } else { sinkyShip.emit('answer', 'MISS'); }
 
   setTimeout(() => {
     const guess = guessMaker();
@@ -50,4 +51,12 @@ sinkyShip.on('guess', (payload) => {
 
   console.log(guessesMade);
   console.log(hitCounter);
+
+  sinkyShip.on('game-over', (payload) => {
+    if(hitCounter === ship.length){
+      console.log('Loser');
+    } else {
+      console.log('WINNER!!');
+    }
+  });
 });
